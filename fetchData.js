@@ -2,7 +2,7 @@ const chalk = require('chalk')
 const fetch = require('node-fetch')
 const fs = require('fs')
 
-const user = 'mypetrobot'
+const user = 'metye'
 const apiKey = '0ae2a02cb6ec0686e560b365074020b3'
 
 fetchData(user)
