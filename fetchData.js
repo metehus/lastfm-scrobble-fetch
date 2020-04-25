@@ -83,7 +83,7 @@ async function fetchData(user) {
 }
 
 async function fetchRecentTracks(u, page) {
-  console.log('PAGE > ' + page)
+  // console.log('PAGE > ' + page) / OOPS
   return fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=${u}&api_key=${apiKey}&page=${page}&format=json&limit=1000`)
     .then(r => r.json())
     .catch(e => console.error(e, page))
