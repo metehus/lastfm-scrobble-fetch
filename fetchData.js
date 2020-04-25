@@ -2,12 +2,9 @@ const chalk = require('chalk')
 const fetch = require('node-fetch')
 const fs = require('fs')
 
-const user = 'metye'
-const apiKey = '0ae2a02cb6ec0686e560b365074020b3'
+const apiKey = process.env.LASTFM_KEY
 
-fetchData(user)
-
-async function fetchData(user) {
+module.exports = async function fetchData(user) {
   const start = new Date()
   const scrobbleList = []
   console.log(chalk.blue('[~]') + ' Fetching entire scrobbles from ' + chalk.cyan(user) + '...')
@@ -56,19 +53,14 @@ async function fetchData(user) {
 
   // console.log(functions)
 
-  const chunks = functions.chunk(4)
+  const chunks = functions.chunk(5)
 
   // await chunks[0]
 
   for (let i = 0; i < chunks.length; i++) {
     console.log(chalk.magenta('[!]') + ' Starting request for chunk ' + chalk.cyan(i) + ' of '
       + chalk.cyan(chunks.length + 1) + '.')
-    await Promise.all(chunks[i].map(f => {
-      return new Promise(async res => {
-        await f()
-        res()
-      })
-    }))
+    await Promise.all(chunks[i].map(f => f()))
   }
 
   // const success = await Promise.all(functions)

@@ -2,12 +2,7 @@ const chalk = require('chalk')
 const fetch = require('node-fetch')
 const fs = require('fs')
 
-
-const apiKey = '0ae2a02cb6ec0686e560b365074020b3'
-  
-getArtistStats('Tame Impala')
-
-async function getArtistStats(artist) {
+module.exports = async function getArtistStats(artist) {
   const start = new Date()
   console.log(chalk.blue('[~]') + ' Getting scrobbling status from ' + chalk.cyan(artist) + '...')
   const scrobbles = require('./data.json')
